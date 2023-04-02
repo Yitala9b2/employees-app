@@ -4,7 +4,7 @@
   <p>Приложение учета сотрудников на react (в работе)
   </p>
   
-  
+<h3> Создано с помощью 'create react app'</h3>
   
 :hammer_and_wrench: Languages and Tools :
   <br>
