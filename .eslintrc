@@ -25,7 +25,8 @@
         "max-classes-per-file":"off",
         "import/order": ["error", {
             "groups": ["builtin", "external", "internal", "parent", "sibling", "index", "object", "type"]
-        }]
+        }],
+        "object-curly-newline":"off"
     },
     "overrides": [
         {
