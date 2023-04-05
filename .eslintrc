@@ -26,5 +26,13 @@
         "import/order": ["error", {
             "groups": ["builtin", "external", "internal", "parent", "sibling", "index", "object", "type"]
         }]
-    }
+    },
+    "overrides": [
+        {
+          "files": ["*.jsx"],
+          "rules": {
+            "arrow-body-style": "off"
+          }
+        }
+      ]
 }

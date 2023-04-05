@@ -10,9 +10,12 @@ import App from './components/app/App.jsx';
 
 // const elem = React.createElement('h3', { className: 'greeting' }, 'hello people'); // тег, класс, содержимое
 
+
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
         <App/>
     </React.StrictMode>,
 );
+
