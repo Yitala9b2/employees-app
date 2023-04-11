@@ -1,12 +1,15 @@
 import EmployeesListItem from '../employees-list-item/EmployeesListItem.jsx';
 import './EmployeesList.css';
 
-const EmployeesList = ({ data }) => {
+const EmployeesList = ({ data, onDelete, submitHandler }) => {
     const elements = data.map((value) => {
         // id нужен чтобы не перерисовывались все элементы компонента а только те которые изменились
         const { id, ...valueProps } = value; // вытащил id из value с помощью деструктуризации
         return (
-            <EmployeesListItem key={id} {...valueProps} />
+            <EmployeesListItem
+                key={id}
+                {...valueProps}
+                onDelete={() => onDelete(id)}/>
         // <EmployeesListItem name = {value.name} salary={value.salary} increase={value.increase} key={}/>
         // <EmployeesListItem {...value}/>
         );
