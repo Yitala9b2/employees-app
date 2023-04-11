@@ -14,9 +14,9 @@ class App extends Component {
         this.state = {
             // импровизированая бд
             data: [
-                { name: 'Пиньчук Виталий', salary: 100000, increase: true, id: 1 },
-                { name: 'Шульга Алена', salary: 150000, increase: false, id: 2 },
-                { name: 'Иванов Иван', salary: 50000, increase: false, id: 3 },
+                { name: 'Пиньчук Виталий', salary: 100000, increase: true, like: true, id: 1 },
+                { name: 'Шульга Алена', salary: 150000, increase: false, like: false, id: 2 },
+                { name: 'Иванов Иван', salary: 50000, increase: false, like: false, id: 3 },
             ],
         };
         this.maxId = 4;
@@ -53,7 +53,7 @@ class App extends Component {
 
     // eslint-disable-next-line class-methods-use-this
     toggleRiseHandler = (id) => {
-        console.log(`Rise this ${id}`);
+        console.log(`Like this ${id}`);
     };
 
     render() {
@@ -68,8 +68,8 @@ class App extends Component {
                 <EmployeesList
                     data={data}
                     onDelete={this.deleteItemHandler}
-                    onToggleIncreaseHandler = {this.toggleIncreaseHandler}
-                    ontoggleRiseHandler = {this.toggleRiseHandler}
+                    onToggleIncrease = {this.toggleIncreaseHandler}
+                    onToggleRise = {this.toggleRiseHandler}
                 />
                 <EmployeesAddForm
                     onSubmit = {this.addItemHandler}
