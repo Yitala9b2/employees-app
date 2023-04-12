@@ -18,7 +18,7 @@ class App extends Component {
                 { name: 'Шульга Алена', salary: 150000, increase: false, like: false, id: 2 },
                 { name: 'Иванов Иван', salary: 50000, increase: false, like: false, id: 3 },
             ],
-            term: 'а',
+            term: '',
         };
         this.maxId = 4;
     }
@@ -48,7 +48,6 @@ class App extends Component {
         });
     };
 
-    // eslint-disable-next-line class-methods-use-this
     togglePropHandler = (id, prop) => {
         // this.setState(({ data }) => {
         // const index = data.findIndex((elem) => elem.id === id);
@@ -82,6 +81,11 @@ class App extends Component {
     };
     // eslint-disable-next-line class-methods-use-this
 
+    onUpdateSearchHandler = (term) => {
+        this.setState({
+            term,
+        });
+    };
 
     render() {
         const { data, term } = this.state;
@@ -96,7 +100,9 @@ class App extends Component {
                     increased = {increased}
                 />
                 <div className="search-panel">
-                    <SearchPanel/>
+                    <SearchPanel
+                        onUpdateSearch = {this.onUpdateSearchHandler}
+                    />
                     <AppFilter/>
                 </div>
                 <EmployeesList
