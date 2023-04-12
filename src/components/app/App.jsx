@@ -18,6 +18,7 @@ class App extends Component {
                 { name: 'Шульга Алена', salary: 150000, increase: false, like: false, id: 2 },
                 { name: 'Иванов Иван', salary: 50000, increase: false, like: false, id: 3 },
             ],
+            term: 'а',
         };
         this.maxId = 4;
     }
@@ -38,6 +39,7 @@ class App extends Component {
             increase: false,
             id: this.maxId++,
         };
+
         this.setState(({ data }) => {
             const newArr = [...data, newItem];
             return {
@@ -47,29 +49,60 @@ class App extends Component {
     };
 
     // eslint-disable-next-line class-methods-use-this
-    toggleIncreaseHandler = (id) => {
-        console.log(`increase this ${id}`);
+    togglePropHandler = (id, prop) => {
+        // this.setState(({ data }) => {
+        // const index = data.findIndex((elem) => elem.id === id);
+        // const old = data[index];
+        // const newItem = { ...old, increase: !old.increase };
+        // const newArray = [...data.slice(0, index), newItem, ...data.slice(index + 1)];
+        // return {
+        //    data: newArray,
+        // };
+        // });
+
+        this.setState(({ data }) => ({
+            data: data.map((item) => {
+                if (item.id === id) {
+                    return { ...item, [prop]: !item[prop] };
+                }
+                return item;
+            }),
+        }));
     };
+
 
     // eslint-disable-next-line class-methods-use-this
-    toggleRiseHandler = (id) => {
-        console.log(`Like this ${id}`);
+    searchEmpHandler = (items, term) => {
+        if (term.length === 0) {
+            return items;
+        }
+        return items.filter((item) => {
+            return item.name.indexOf(term) > -1;
+        });
     };
+    // eslint-disable-next-line class-methods-use-this
+
 
     render() {
-        const { data } = this.state;
+        const { data, term } = this.state;
+        const employees = this.state.data.length;
+        const increased = this.state.data.filter((item) => item.increase).length;
+
+        const visibleData = this.searchEmpHandler(data, term);
         return (
             <div className="app">
-                <AppInfo/>
+                <AppInfo
+                    employees = {employees}
+                    increased = {increased}
+                />
                 <div className="search-panel">
                     <SearchPanel/>
                     <AppFilter/>
                 </div>
                 <EmployeesList
-                    data={data}
+                    data={visibleData}
                     onDelete={this.deleteItemHandler}
-                    onToggleIncrease = {this.toggleIncreaseHandler}
-                    onToggleRise = {this.toggleRiseHandler}
+                    onToggleProp = {this.togglePropHandler}
                 />
                 <EmployeesAddForm
                     onSubmit = {this.addItemHandler}

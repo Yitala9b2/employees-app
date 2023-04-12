@@ -2,7 +2,7 @@
 import EmployeesListItem from '../employees-list-item/EmployeesListItem.jsx';
 import './EmployeesList.css';
 
-const EmployeesList = ({ data, onDelete, onToggleIncrease, onToggleRise }) => {
+const EmployeesList = ({ data, onDelete, onToggleProp }) => {
     const elements = data.map((value) => {
         // id нужен чтобы не перерисовывались все элементы компонента а только те которые изменились
         const { id, ...valueProps } = value; // вытащил id из value с помощью деструктуризации
@@ -11,8 +11,7 @@ const EmployeesList = ({ data, onDelete, onToggleIncrease, onToggleRise }) => {
                 key={id}
                 {...valueProps}
                 onDelete={() => onDelete(id)}
-                onToggleIncrease={() => onToggleIncrease(id)}
-                onToggleRise ={() => onToggleRise(id)}
+                onToggleProp={(e) => onToggleProp(id, e.currentTarget.getAttribute('data-toggle'))}
             />
         // <EmployeesListItem name = {value.name} salary={value.salary} increase={value.increase} key={}/>
         // <EmployeesListItem {...value}/>

@@ -9,9 +9,19 @@
 
 .add-form {
     margin-top: 20px;
+    position: relative;
 }
 
 .add-form input {
     width: 350px;
     margin-right: 20px;
+}
+
+.error {
+    border: 1px solid red;
+    
+}
+.box-error::after{
+    content: 'Заполните поле';
+    color: red;
 }
