@@ -1,7 +1,9 @@
 # Employees app
 <div  id="ladesign_description" align="center" >
   
-  <h2>Приложение учета сотрудников на react (в работе)</h2>
+  <h2>Приложение учета сотрудников на react (в работе)
+  <br>
+  https://yitala9b2.github.io/employees-app/</h2>
   <p>В данном проекте реализованы:
   <ul align="left">
   <li>Фильтрация сотрудников по зарплате и повышению</li>
