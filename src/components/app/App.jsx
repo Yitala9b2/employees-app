@@ -15,10 +15,11 @@ class App extends Component {
             // импровизированая бд
             data: [
                 { name: 'Пиньчук Виталий', salary: 100000, increase: true, like: true, id: 1 },
-                { name: 'Шульга Алена', salary: 150000, increase: false, like: false, id: 2 },
+                { name: 'Шульга Алена', salary: 150000, increase: true, like: false, id: 2 },
                 { name: 'Иванов Иван', salary: 50000, increase: false, like: false, id: 3 },
             ],
             term: '',
+            filter: 'increase',
         };
         this.maxId = 4;
     }
@@ -87,12 +88,31 @@ class App extends Component {
         });
     };
 
+    // eslint-disable-next-line class-methods-use-this
+    filterEmpHanler = (items, filter) => {
+        switch (filter) {
+        case 'increase':
+            return items.filter((item) => item.increase);
+        case 'more then 50000':
+            return items.filter((item) => item.salary > 50000);
+        default:
+            return items;
+        }
+    };
+
+    onUpdateFilterHandler = (filter) => {
+        this.setState({
+            filter,
+        });
+    };
+
     render() {
-        const { data, term } = this.state;
+        const { data, term, filter } = this.state;
         const employees = this.state.data.length;
         const increased = this.state.data.filter((item) => item.increase).length;
 
-        const visibleData = this.searchEmpHandler(data, term);
+        const visibleData = this.filterEmpHanler(this.searchEmpHandler(data, term), filter);
+
         return (
             <div className="app">
                 <AppInfo
@@ -103,7 +123,8 @@ class App extends Component {
                     <SearchPanel
                         onUpdateSearch = {this.onUpdateSearchHandler}
                     />
-                    <AppFilter/>
+                    <AppFilter
+                        onUpdateFilter = {this.onUpdateFilterHandler}/>
                 </div>
                 <EmployeesList
                     data={visibleData}
