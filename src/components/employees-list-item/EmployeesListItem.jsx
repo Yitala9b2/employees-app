@@ -33,8 +33,14 @@ const EmployeesListItem = ({ name, salary, onDelete, onToggleProp, increase, lik
     }
     return (
         <li className={classNames}>
-            <span className="list-group-item-label" onClick = {onToggleProp} data-toggle="like">{name}</span>
-            <input type="text" className="list-group-item-input" defaultValue={`${salary}р.`}/>
+            <span className="list-group-item-label"
+                onClick = {onToggleProp}
+                data-toggle="like"
+                style={{ fontSize: '2em' }}>
+                {name}
+
+            </span>
+            <input type="text" aria-hidden='true' aria-disabled='true' className="list-group-item-input" defaultValue={`${salary}р.`} readOnly/>
             <div className='d-flex justify-content-center align-items-center'>
                 <button type="button"
                     className="btn-cookie btn-sm "

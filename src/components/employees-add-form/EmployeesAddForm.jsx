@@ -1,6 +1,6 @@
 /* eslint-disable no-return-assign */
 import { Component } from 'react';
-import './EmployeesAddForm.css';
+import './EmployeesAddForm.scss';
 
 class EmployeesAddForm extends Component {
     constructor(props) {

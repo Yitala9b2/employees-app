@@ -63,3 +63,6 @@
     color: #aeaeae;
 }
   
+.list-group-item input:focus-visible{
+    outline:none;
+}
