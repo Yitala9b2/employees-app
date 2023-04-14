@@ -1,7 +1,7 @@
 // import { Component } from 'react';
 import './EmployeesListItem.css';
 
-const EmployeesListItem = (props) => {
+const EmployeesListItem = ({ name, salary, onDelete, onToggleProp, increase, like }) => {
 // class EmployeesListItem extends Component {
     // constructor(props) {
     //    super(props);
@@ -22,8 +22,6 @@ const EmployeesListItem = (props) => {
     //        like: !like,
     //    }));
     // };
-
-    const { name, salary, onDelete, onToggleProp, increase, like } = props;
     // const { increase, like } = this.state;
     // добавили класс increase в классы
     let classNames = 'list-group-item d-flex justify-content-between';

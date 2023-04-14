@@ -1,3 +1,4 @@
+/* eslint-disable no-return-assign */
 import { Component } from 'react';
 import './EmployeesAddForm.css';
 
@@ -7,14 +8,16 @@ class EmployeesAddForm extends Component {
         this.state = {
             name: '',
             salary: '',
-            addClass: false,
+            addClassName: false,
+            addClassSalary: false,
         };
         this.class = ' error';
     }
 
     valueChangeHandler = (e) => {
         this.setState({
-            addClass: false,
+            addClassName: false,
+            addClassSalary: false,
             [e.target.name]: e.target.value,
         });
     };
@@ -28,21 +31,36 @@ class EmployeesAddForm extends Component {
                 salary: '',
             });
         } else {
-            this.setState({
-                addClass: true,
-            });
+            const { addClassName, addClassSalary, ...classes } = this.state;
+            const lastClasses = Object.values(classes);
+            if (lastClasses[0] === '') {
+                this.setState({
+                    addClassName: true,
+                });
+            }
+            if (lastClasses[1] === '') {
+                this.setState({
+                    addClassSalary: true,
+                });
+            }
         }
     };
 
 
     render() {
         const { name, salary } = this.state;
-        let classes = 'form-control new-post-label';
-        let boxes = 'box';
+        let classesName = 'form-control new-post-label';
+        let classesSalary = 'form-control new-post-label';
+        let boxes1 = 'box';
+        let boxes2 = 'box';
 
-        if (this.state.addClass) {
-            classes += ' error';
-            boxes += ' box-error';
+        if (this.state.addClassName) {
+            classesName += ' error';
+            boxes1 += ' box-error';
+        }
+        if (this.state.addClassSalary) {
+            classesSalary += ' error';
+            boxes2 += ' box-error';
         }
 
         return (
@@ -50,17 +68,17 @@ class EmployeesAddForm extends Component {
                 <h3>Добавьте нового сотрудника</h3>
                 <form onSubmit = {this.submitHandler}
                     className="add-form d-flex">
-                    <div className={boxes}>
+                    <div className={boxes1}>
                         <input type="text"
-                            className={classes}
+                            className={classesName}
                             placeholder="Как его зовут?"
                             name='name'
                             value ={name}
                             onChange = {this.valueChangeHandler}/>
                     </div>
-                    <div className={boxes}>
+                    <div className={boxes2}>
                         <input type="number"
-                            className={classes}
+                            className={classesSalary}
                             placeholder="З/П в р."
                             name='salary'
                             value ={salary}

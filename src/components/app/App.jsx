@@ -19,7 +19,7 @@ class App extends Component {
                 { name: 'Иванов Иван', salary: 50000, increase: false, like: false, id: 3 },
             ],
             term: '',
-            filter: 'increase',
+            filter: '',
         };
         this.maxId = 4;
     }
@@ -35,11 +35,13 @@ class App extends Component {
 
     addItemHandler = (name, salary) => {
         const newItem = {
+            // повторяющиеся ключи и значения поэтому такой синтаксис
             name,
             salary,
             increase: false,
             id: this.maxId++,
         };
+        console.log(newItem);
 
         this.setState(({ data }) => {
             const newArr = [...data, newItem];
@@ -108,8 +110,8 @@ class App extends Component {
 
     render() {
         const { data, term, filter } = this.state;
-        const employees = this.state.data.length;
-        const increased = this.state.data.filter((item) => item.increase).length;
+        const employees = data.length;
+        const likes = data.filter((item) => item.like).length;
 
         const visibleData = this.filterEmpHanler(this.searchEmpHandler(data, term), filter);
 
@@ -117,7 +119,7 @@ class App extends Component {
             <div className="app">
                 <AppInfo
                     employees = {employees}
-                    increased = {increased}
+                    likes = {likes}
                 />
                 <div className="search-panel">
                     <SearchPanel
