@@ -113,6 +113,7 @@ class App extends Component {
         const employees = data.length;
         const likes = data.filter((item) => item.like).length;
 
+        // фильтрация по фильтру и поиску
         const visibleData = this.filterEmpHanler(this.searchEmpHandler(data, term), filter);
 
         return (
@@ -126,7 +127,8 @@ class App extends Component {
                         onUpdateSearch = {this.onUpdateSearchHandler}
                     />
                     <AppFilter
-                        onUpdateFilter = {this.onUpdateFilterHandler}/>
+                        onUpdateFilter = {this.onUpdateFilterHandler}
+                        filter = {filter}/>
                 </div>
                 <EmployeesList
                     data={visibleData}
